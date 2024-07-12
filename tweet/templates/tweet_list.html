@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    DTweet List
+{% endblock %}
+
+{% block content %}
+    <h1 class="my-4 ">DTweets</h1>
+    <p>Welcome to DTweeter, you can find all the tweets here.</p>
+
+    <a href=" {% url "tweet_create" %} ">
+        <button class="btn btn-primary">        
+            Create a tweet
+        </button>
+    </a>
+    <div class='container row gap-3' >
+        {% for tweet in tweets %}
+        <div class="card" style="width: 18rem;">
+            {% if tweet.photo %}
+            <img src="{{tweet.photo.url}}" class="card-img-top" alt="...">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{tweet.user.username}}</h5>
+              <p class="card-text">{{tweet.text}}</p>
+              <a href=" {% url "tweet_edit" tweet.id %} " class="btn btn-primary">Edit</a>
+              <a href=" {% url "tweet_delete" tweet.id %} " class="btn btn-danger">Delete</a>
+            </div>
+          </div>    
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    DTweet Home Page
+{% endblock %}
+
+{% block content %}
+    <h1 class="my-4 ">DTweet</h1>
+    <p>Mi a more, are you sure you want to delete this post!?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class='btn btn-danger'>
+            Delete
+        </button>
+    </form>
+    <a href="{% url 'tweet_list' %}">
+        <button class='btn btn-success'>
+            back
+        </button>
+    </a>
+{% endblock %}
